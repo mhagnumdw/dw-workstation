@@ -16,3 +16,11 @@ upx -7 -k BackupRestore # decrease executable size
 asdf install java graalvm-community-17.0.8
 asdf local java graalvm-community-17.0.8
 ```
+
+```bash
+# to install wrapper, like maven wrapper, so you don't
+# need to have JBang installed
+jbang wrapper install
+
+./jbang BackupRestore.java mhagnumdw
+```
