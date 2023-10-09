@@ -2,6 +2,8 @@
 //JAVA 17+
 //DEPS info.picocli:picocli:4.6.3
 //DEPS info.picocli:picocli-codegen:4.6.3
+//SOURCES Backup.java
+//SOURCES Restore.java
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -24,6 +26,8 @@ class BackupRestore implements Callable<Integer> {
     @Override
     public Integer call() throws Exception { // your business logic goes here...
         System.out.println("Hello " + greeting);
+        new Backup().process();
+        new Restore().process();
         return 0;
     }
 }
