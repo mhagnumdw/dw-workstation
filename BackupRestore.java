@@ -1,7 +1,7 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //JAVA 17+
 //DEPS info.picocli:picocli:4.6.3
-//DEPS info.picocli:picocli-codegen:4.6.3
+//DEPS info.picocli:picocli-codegen:4.6.3 // necessário apenas para gerar código nativo
 //DEPS com.google.auto.service:auto-service:1.1.1
 //DEPS org.projectlombok:lombok:1.18.30
 //SOURCES *.java
