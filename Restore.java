@@ -1,6 +1,6 @@
-public class Restore {
 
-    public void process() {
-        System.out.println("Restore");
-    }
+public interface Restore {
+
+    void process();
+
 }

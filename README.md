@@ -33,3 +33,10 @@ jbang wrapper install
 
 ./jbang BackupRestore.java mhagnumdw
 ```
+
+Editar o projeto no vscode e o vscode reconhecer as mudanças automaticamente
+
+> ref: <https://www.jbang.dev/documentation/guide/latest/editing.html#live-editing>
+
+- Instalar a extensão `JBang` no vscode
+- `jbang edit --live --open=code BackupRestore.java`

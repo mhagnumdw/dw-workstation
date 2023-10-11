@@ -1,6 +1,9 @@
-public class Backup {
+public interface Backup {
 
-    public void process() {
-        System.out.println("Backup");
-    }
+    void process();
+
+    // TODO: o ideal é que esse método não exista e que o
+    // context seja recebido via construtor
+    void setContext(Context context);
+
 }
