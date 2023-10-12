@@ -1,13 +1,12 @@
-
-// TODO: converter para record ?
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NonNull;
 
+@AllArgsConstructor
 public class Context {
 
+    @NonNull
     @Getter
-    @Setter
     private String userHome;
 
 }

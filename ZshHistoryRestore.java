@@ -1,7 +1,7 @@
-public class ZshHistoryRestore implements Restore {
+public class ZshHistoryRestore extends RestoreAbstract {
 
     @Override
     public void process() {
-        System.out.println("Restore");
+        log.info("Restore");
     }
 }
