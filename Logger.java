@@ -16,4 +16,12 @@ public class Logger {
         out.println("[" + lookupClass.getName() + "] " + message);
     }
 
+    public void info(String format, Object... arguments) {
+        out.println("[" + lookupClass.getName() + "] " + format(format, arguments));
+    }
+
+    private String format(String format, Object... arguments) {
+        return String.format(format.replace("{}", "%s"), arguments);
+    }
+
 }

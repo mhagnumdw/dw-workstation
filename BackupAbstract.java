@@ -10,4 +10,9 @@ public abstract class BackupAbstract implements Backup {
     @Getter(AccessLevel.PROTECTED)
     private Context context;
 
+    @Override
+    public BackupContext getBackupContext() {
+        return context.getBackupContext();
+    }
+
 }

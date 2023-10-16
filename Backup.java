@@ -10,4 +10,6 @@ public interface Backup {
     // construtor
     void setContext(Context context);
 
+    BackupContext getBackupContext();
+
 }

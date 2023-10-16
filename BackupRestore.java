@@ -7,6 +7,7 @@
 //SOURCES *.java
 
 import java.lang.invoke.MethodHandles;
+import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 import lombok.Getter;
@@ -31,7 +32,7 @@ class BackupRestore implements Callable<Integer> {
     private static final Logger log = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
     @Option(names = "--user-home", description = "User home dir (default: ${DEFAULT-VALUE})")
-    private String userHome = System.getProperty("user.home");
+    private Path userHome = Path.of(System.getProperty("user.home"));
 
     @Getter
     private Context context;
@@ -61,7 +62,7 @@ class BackupRestore implements Callable<Integer> {
 
     private void init() {
         log.info("init");
-        this.context = new Context(userHome);
+        this.context = Context.of(userHome);
     }
 
 }

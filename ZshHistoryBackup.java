@@ -11,13 +11,13 @@ public class ZshHistoryBackup extends BackupAbstract {
     public void process() {
         log.info("Iniciando");
 
-        Path source = Path.of(getContext().getUserHome(), ".zsh_history");
+        String fileName = ".zsh_history";
+        Path source = getContext().getUserHome().resolve(fileName);
+        Path target = getBackupContext().getBackupDir().resolve(fileName);
+
+        log.info("Backup de '{}' para '{}'", source, target);
 
         // TODO: daquiiiiiiii
-
-        // Path target = Path.of("~/.zsh_history");
-
         // Files.copy(source, target);
-        log.info(source);
     }
 }
