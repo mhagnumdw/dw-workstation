@@ -1,5 +1,8 @@
 import static java.lang.System.out;
 
+/**
+ * Mecanismo de log básico da aplicação.
+ */
 public class Logger {
 
     private Class<?> lookupClass;

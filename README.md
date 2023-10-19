@@ -10,22 +10,22 @@ asdf list all jbang
 asdf install jbang 0.111.0
 asdf global jbang 0.111.0
 asdf local jbang 0.111.0
-jbang init -t cli BackupRestore.java
+jbang init -t cli DwWorkstation.java
 
 # run
-jbang BackupRestore.java
-jbang BackupRestore.java --help
-jbang BackupRestore.java mhagnumdw
-./BackupRestore.java
-./BackupRestore.java --help
-./BackupRestore.java mhagnumdw
+jbang DwWorkstation.java
+jbang DwWorkstation.java --help
+jbang DwWorkstation.java mhagnumdw
+./DwWorkstation.java
+./DwWorkstation.java --help
+./DwWorkstation.java mhagnumdw
 ```
 
 ```bash
 asdf install java graalvm-community-17.0.8
 asdf local java graalvm-community-17.0.8
-jbang export native --force --verbose BackupRestore.java
-upx -7 -k BackupRestore # decrease executable size
+jbang export native --force --verbose DwWorkstation.java
+upx -7 -k DwWorkstation # decrease executable size
 ```
 
 ```bash
@@ -33,7 +33,7 @@ upx -7 -k BackupRestore # decrease executable size
 # need to have JBang installed
 jbang wrapper install
 
-./jbang BackupRestore.java mhagnumdw
+./jbang DwWorkstation.java mhagnumdw
 ```
 
 Editar o projeto no vscode e o vscode reconhecer as mudanças automaticamente
@@ -41,4 +41,4 @@ Editar o projeto no vscode e o vscode reconhecer as mudanças automaticamente
 > ref: <https://www.jbang.dev/documentation/guide/latest/editing.html#live-editing>
 
 - Instalar a extensão `JBang` no vscode
-- `jbang edit --live --open=code BackupRestore.java`
+- `jbang edit --live --open=code DwWorkstation.java`

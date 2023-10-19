@@ -4,6 +4,9 @@ import java.nio.file.Path;
 
 import com.google.auto.service.AutoService;
 
+/**
+ * Rotina de backup do histórico do ZSH.
+ */
 @AutoService(Backup.class)
 public class ZshHistoryBackup extends BackupAbstract {
 

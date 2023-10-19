@@ -7,6 +7,9 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.ParentCommand;
 
+/**
+ * Comando de backup no CLI.
+ */
 @Command(name = "backup", description = "Executa o backup")
 public class BackupCommand implements Callable<Integer> {
 
@@ -16,7 +19,7 @@ public class BackupCommand implements Callable<Integer> {
     private Path backupDir;
 
     @ParentCommand
-    private BackupRestore parentCommand; // picocli injects reference to parent command
+    private DwWorkstation parentCommand; // picocli injects reference to parent command
 
     @Override
     public Integer call() throws Exception {

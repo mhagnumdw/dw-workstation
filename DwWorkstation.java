@@ -17,17 +17,20 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.ParseResult;
 import picocli.CommandLine.ScopeType;
 
+/**
+ * Comando principal pra ser executado no CLI, exemplo: ./DwWorkstation.java --help
+ */
 @Command(
-    name = "BackupRestore",
+    name = "DwWorkstation",
     mixinStandardHelpOptions = true,
-    version = "BackupRestore 0.2",
-    description = "BackupRestore made with jbang",
+    version = "DwWorkstation 0.2",
+    description = "DwWorkstation made with jbang",
     scope = ScopeType.INHERIT, // https://picocli.info/#_inherited_command_attributes
     subcommands = {
         BackupCommand.class
     }
 )
-class BackupRestore implements Callable<Integer> {
+class DwWorkstation implements Callable<Integer> {
 
     private static final Logger log = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -38,7 +41,7 @@ class BackupRestore implements Callable<Integer> {
     private Context context;
 
     public static void main(String... args) {
-        BackupRestore app = new BackupRestore();
+        DwWorkstation app = new DwWorkstation();
         int exitCode = new CommandLine(app)
             .setExecutionStrategy(app::executionStrategy)
             .execute(args);
