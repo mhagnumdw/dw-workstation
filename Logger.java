@@ -5,6 +5,10 @@ import static java.lang.System.out;
  */
 public class Logger {
 
+    private enum Level {
+        INFO, ERROR
+    }
+
     private Class<?> lookupClass;
 
     private Logger(Class<?> lookupClass) {
@@ -16,11 +20,32 @@ public class Logger {
     }
 
     public void info(Object message) {
-        out.println("[" + lookupClass.getName() + "] " + message);
+        log(Level.INFO, message);
     }
 
     public void info(String format, Object... arguments) {
-        out.println("[" + lookupClass.getName() + "] " + format(format, arguments));
+        log(Level.INFO, format(format, arguments));
+    }
+
+    public void error(Object message) {
+        log(Level.ERROR, message);
+    }
+
+    public void error(Throwable e) {
+        log(Level.ERROR, e);
+    }
+
+    public void error(String format, Object... arguments) {
+        log(Level.ERROR, format(format, arguments));
+    }
+
+    private void log(Level level, Object message) {
+        out.println("[" + level + "] [" + lookupClass.getName() + "] " + message);
+    }
+
+    private void log(Level level, Throwable e) {
+        out.println("[" + level + "] [" + lookupClass.getName() + "] " + e.getMessage());
+        e.printStackTrace();
     }
 
     private String format(String format, Object... arguments) {

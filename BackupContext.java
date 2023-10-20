@@ -1,14 +1,19 @@
 import java.nio.file.Path;
 
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor(staticName = "of")
 public class BackupContext {
 
-    @NonNull
     @Getter
-    private Path backupDir;
+    private final Path backupDir;
+
+    private BackupContext(Path backupDir) {
+        this.backupDir = backupDir;
+    }
+
+    public static BackupContext of(Path backupRootDir) {
+        String id = MachineIdentifier.getIdentifier();
+        return new BackupContext(backupRootDir.resolve(id));
+    }
 
 }
