@@ -23,7 +23,7 @@ public class ZshHistoryBackup extends BackupAbstract {
 
         try {
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-            log.info("Backupo feito");
+            log.info("Backup feito");
         } catch (IOException e) {
             throw BackupException.of(e, "Falha ao copiar de '{}' para '{}'", source, target);
         }

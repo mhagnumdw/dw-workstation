@@ -42,6 +42,9 @@ public class BackupCommand implements Callable<Integer> {
             try {
                 backup.process(); // executa a rotina de backup
             } catch (BackupException e) {
+                // TODO: decidir melhor o que fazer com o erro:
+                // parar o fluxo?
+                // guardar o erro, pular pra próxima execução e resumir todos os erros no final?
                 log.error(e);
             }
         }
