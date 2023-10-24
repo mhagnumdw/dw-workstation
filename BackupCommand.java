@@ -24,7 +24,8 @@ public class BackupCommand implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        log.info("Iniciando..." + backupRootDir);
+        log.info("Iniciando...");
+        log.info("Diretório raiz de backup: {}", backupRootDir);
 
         BackupContext backupContext = BackupContext.of(backupRootDir);
         getContext().setBackupContext(backupContext);
@@ -46,6 +47,7 @@ public class BackupCommand implements Callable<Integer> {
                 // parar o fluxo?
                 // guardar o erro, pular pra próxima execução e resumir todos os erros no final?
                 log.error(e);
+                return 1; // abortando
             }
         }
 

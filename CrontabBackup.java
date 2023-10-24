@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.stream.Collectors;
 
 import com.google.auto.service.AutoService;
@@ -8,15 +10,35 @@ import com.google.auto.service.AutoService;
  * Rotina de backup dos pacotes instalados com DNF (Fedora).
  */
 @AutoService(Backup.class)
-public class DNFPackagesBackup extends BackupAbstract {
+public class CrontabBackup extends BackupAbstract {
 
     @Override
     public void process() throws BackupException {
         log.info("Iniciando");
 
-        backup("dnf list installed", "dnf_list_installed");
+        backup("crontab -l", "crontab_with_command");
 
-        backup("dnf history userinstalled", "dnf_history_userinstalled");
+        // TODO: nome do usuário corrente (está fixo mhagnumdw) - bom vir do contexto
+        copy("/var/spool/cron/mhagnumdw", "crontab_user_mhagnumdw");
+    }
+
+    private void copyWithSudo(String sourcePath, String outputFilename) throws BackupException {
+        // TODO: daquiii: reusando o método backup(String command, String outputFilename)
+        // Ver dw.java como exemplo
+    }
+
+    private void copy(String sourcePath, String outputFilename) throws BackupException {
+        Path source = Path.of(sourcePath);
+        Path target = getBackupContext().getBackupDir().resolve(outputFilename);
+
+        log.info("Backup de '{}' para '{}'", source, target);
+
+        try {
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            log.info("Backup feito");
+        } catch (IOException e) {
+            throw BackupException.of(e, "Falha ao copiar de '{}' para '{}'", source, target);
+        }
     }
 
     private void backup(String command, String outputFilename) throws BackupException {
