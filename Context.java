@@ -12,6 +12,10 @@ public class Context {
     @Getter
     private Path userHome;
 
+    @NonNull
+    @Getter
+    private String username;
+
     @Getter
     @Setter // TODO: é ideal que essa setagem só ocorra uma única vez
     private BackupContext backupContext;

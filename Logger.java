@@ -24,7 +24,7 @@ public class Logger {
     }
 
     public void info(String format, Object... arguments) {
-        log(Level.INFO, format(format, arguments));
+        log(Level.INFO, Utils.format(format, arguments));
     }
 
     public void error(Object message) {
@@ -36,7 +36,7 @@ public class Logger {
     }
 
     public void error(String format, Object... arguments) {
-        log(Level.ERROR, format(format, arguments));
+        log(Level.ERROR, Utils.format(format, arguments));
     }
 
     private void log(Level level, Object message) {
@@ -46,10 +46,6 @@ public class Logger {
     private void log(Level level, Throwable e) {
         out.println("[" + level + "] [" + lookupClass.getName() + "] " + e.getMessage());
         e.printStackTrace();
-    }
-
-    private String format(String format, Object... arguments) {
-        return String.format(format.replace("{}", "%s"), arguments);
     }
 
 }

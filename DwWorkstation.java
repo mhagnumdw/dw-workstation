@@ -65,7 +65,8 @@ class DwWorkstation implements Callable<Integer> {
 
     private void init() {
         log.info("init");
-        this.context = Context.of(userHome);
+        String username = System.getProperty("user.name");
+        this.context = Context.of(userHome, username);
     }
 
 }

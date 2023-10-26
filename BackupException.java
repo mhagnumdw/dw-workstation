@@ -1,4 +1,3 @@
-
 public class BackupException extends Exception {
 
     private BackupException(String message) {
@@ -10,15 +9,11 @@ public class BackupException extends Exception {
     }
 
     public static BackupException of(String format, Object... arguments) {
-        return new BackupException(format(format, arguments));
+        return new BackupException(Utils.format(format, arguments));
     }
 
     public static BackupException of(Throwable cause, String format, Object... arguments) {
-        return new BackupException(format(format, arguments), cause);
+        return new BackupException(Utils.format(format, arguments), cause);
     }
 
-    // TODO: esse mesmo método existe em Logger.java
-    private static String format(String format, Object... arguments) {
-        return String.format(format.replace("{}", "%s"), arguments);
-    }
 }
