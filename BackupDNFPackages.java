@@ -8,7 +8,7 @@ import com.google.auto.service.AutoService;
  * Rotina de backup dos pacotes instalados com DNF (Fedora).
  */
 @AutoService(Backup.class)
-public class DNFPackagesBackup extends BackupAbstract {
+public class BackupDNFPackages extends BackupAbstract {
 
     @Override
     public void process() throws BackupException {

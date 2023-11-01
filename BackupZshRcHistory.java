@@ -9,7 +9,7 @@ import com.google.auto.service.AutoService;
  * Rotina de backup do {@code ~/.zshrc}.
  */
 @AutoService(Backup.class)
-public class ZshRcHistoryBackup extends BackupAbstract {
+public class BackupZshRcHistory extends BackupAbstract {
 
     @Override
     public void process() throws BackupException {
