@@ -1,0 +1,2 @@
+- [ ] Reusar métodos de backup e colocá-los no melhor local
+- [ ] Talvez o contrato de Backup deva ter tanto o método de backup como restore
