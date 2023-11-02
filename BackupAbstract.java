@@ -1,6 +1,7 @@
+import com.google.inject.Inject;
+
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Implementação comum das rotinas de backup. Normalmente rotinas de backup
@@ -10,13 +11,12 @@ public abstract class BackupAbstract implements Backup {
 
     protected final Logger log = Logger.getLogger(getClass());
 
-    @Setter
+    @Inject
     @Getter(AccessLevel.PROTECTED)
     private Context context;
 
-    @Override
-    public BackupContext getBackupContext() {
-        return context.getBackupContext();
-    }
+    @Inject
+    @Getter(AccessLevel.PROTECTED)
+    private BackupContext backupContext;
 
 }

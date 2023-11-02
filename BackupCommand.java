@@ -4,31 +4,36 @@ import java.nio.file.Path;
 import java.util.ServiceLoader;
 import java.util.concurrent.Callable;
 
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Singleton;
+
+import lombok.Getter;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.ParentCommand;
 
 /**
  * Comando de backup no CLI.
  */
+@Singleton
 @Command(name = "backup", description = "Executa o backup")
 public class BackupCommand implements Callable<Integer> {
 
     private static final Logger log = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
+    @Getter
     @Option(names = "--backup-root-dir", required = true, description = "Directory where the backup is saved")
     private Path backupRootDir;
 
-    @ParentCommand
-    private DwWorkstation parentCommand; // picocli injects reference to parent command
+    @Inject
+    private Injector injector;
 
     @Override
     public Integer call() throws Exception {
         log.info("Iniciando...");
         log.info("Diretório raiz de backup: {}", backupRootDir);
 
-        BackupContext backupContext = BackupContext.of(backupRootDir);
-        getContext().setBackupContext(backupContext);
+        BackupContext backupContext = injector.getInstance(BackupContext.class);
 
         if (Files.exists(backupContext.getBackupDir())) {
             log.info("O diretório '{}' já existe", backupContext.getBackupDir());
@@ -39,7 +44,7 @@ public class BackupCommand implements Callable<Integer> {
 
         ServiceLoader<Backup> backupProviders = ServiceLoader.load(Backup.class);
         for (Backup backup : backupProviders) {
-            backup.setContext(getContext());
+            injector.injectMembers(backup);
             try {
                 backup.process(); // executa a rotina de backup
             } catch (BackupException e) {
@@ -52,10 +57,6 @@ public class BackupCommand implements Callable<Integer> {
         }
 
         return 0;
-    }
-
-    private Context getContext() {
-        return parentCommand.getContext();
     }
 
 }
