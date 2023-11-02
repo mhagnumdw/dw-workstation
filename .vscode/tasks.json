@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "jbang: Debug DwWorkstation",
+      "type": "shell",
+      "isBackground": true,
+      "command": "jbang --debug DwWorkstation.java backup --backup-root-dir=/home/mhagnumdw/Dropbox/backup/teste-dw-backup",
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Listening for transport dt_socket at address",
+            "endsPattern": ".",
+          }
+        }
+      ]
+    }
+  ]
+}

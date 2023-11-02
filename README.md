@@ -42,3 +42,8 @@ Editar o projeto no vscode e o vscode reconhecer as mudanças automaticamente
 
 - Instalar a extensão `JBang` no vscode
 - `jbang edit --live --open=code DwWorkstation.java`
+
+Debugar:
+
+- jbang --debug DwWorkstation.java backup --backup-root-dir=/home/mhagnumdw/Dropbox/backup/teste-dw-backup
+- Na view debug do vscode, executar `DwWorkstation`
