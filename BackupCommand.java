@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import lombok.Getter;
@@ -26,6 +27,9 @@ public class BackupCommand implements Callable<Integer> {
     private Path backupRootDir;
 
     @Inject
+    private Provider<BackupContext> backupContextProvider; // Lazy inject with Provider<>
+
+    @Inject
     private Injector injector;
 
     @Override
@@ -33,7 +37,7 @@ public class BackupCommand implements Callable<Integer> {
         log.info("Iniciando...");
         log.info("Diretório raiz de backup: {}", backupRootDir);
 
-        BackupContext backupContext = injector.getInstance(BackupContext.class);
+        BackupContext backupContext = backupContextProvider.get();
 
         if (Files.exists(backupContext.getBackupDir())) {
             log.info("O diretório '{}' já existe", backupContext.getBackupDir());
