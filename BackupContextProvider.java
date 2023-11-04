@@ -2,6 +2,9 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
+/**
+ * Como o objeto `BackupContext` deve ser construído.
+ */
 @Singleton
 public class BackupContextProvider implements Provider<BackupContext> {
 

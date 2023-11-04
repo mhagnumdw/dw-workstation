@@ -2,6 +2,9 @@ import java.nio.file.Path;
 
 import lombok.Getter;
 
+/**
+ * Contexto referente a rotina de backup.
+ */
 public class BackupContext {
 
     @Getter

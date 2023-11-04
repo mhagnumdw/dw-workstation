@@ -1,3 +1,6 @@
+/**
+ * Representa uma exceção durante uma rotina de backup.
+ */
 public class BackupException extends Exception {
 
     private BackupException(String message) {

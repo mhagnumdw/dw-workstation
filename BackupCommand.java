@@ -14,7 +14,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 /**
- * Comando de backup no CLI.
+ * Comando de backup no CLI. Executa todas as rotinas de backup.
  */
 @Singleton
 @Command(name = "backup", description = "Executa o backup")
@@ -51,7 +51,7 @@ public class BackupCommand implements Callable<Integer> {
             injector.injectMembers(backup);
             try {
                 backup.process(); // executa a rotina de backup
-            } catch (BackupException e) {
+            } catch (BackupException e) { // TODO: e se não vier BackupException, o que fazer?
                 // TODO: decidir melhor o que fazer com o erro:
                 // parar o fluxo?
                 // guardar o erro, pular pra próxima execução e resumir todos os erros no final?
