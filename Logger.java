@@ -6,7 +6,9 @@ import static java.lang.System.out;
 public class Logger {
 
     private enum Level {
-        INFO, ERROR
+        ERROR,
+        INFO,
+        DEBUG
     }
 
     private Class<?> lookupClass;
@@ -37,6 +39,10 @@ public class Logger {
 
     public void error(String format, Object... arguments) {
         log(Level.ERROR, Utils.format(format, arguments));
+    }
+
+    public void debug(String format, Object... arguments) {
+        log(Level.DEBUG, Utils.format(format, arguments));
     }
 
     private void log(Level level, Object message) {

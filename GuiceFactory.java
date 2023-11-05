@@ -16,10 +16,7 @@ public class GuiceFactory implements IFactory {
     @Override
     public <K> K create(Class<K> aClass) throws Exception {
         try {
-            log.info("Criando: {}", aClass.getName());
-            K instance = injector.getInstance(aClass);
-            log.info("Criado: {}", aClass.getName());
-            return instance;
+            return injector.getInstance(aClass);
         } catch (ConfigurationException ex) { // no implementation found in Guice configuration
             log.error("Usando a factory default para criar: {}", aClass.getName());
             return CommandLine.defaultFactory().create(aClass); // fallback if missing
