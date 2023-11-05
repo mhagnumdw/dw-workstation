@@ -1,5 +1,6 @@
 import java.lang.invoke.MethodHandles;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ServiceLoader;
 import java.util.concurrent.Callable;
@@ -26,8 +27,8 @@ public class RestoreCommand implements Callable<Integer> {
     @Option(names = "--backup-root-dir", required = true, description = "Directory where the backup is saved")
     private Path backupRootDir;
 
-    // @Inject
-    // private Provider<BackupContext> backupContextProvider; // Lazy inject with Provider<>
+    @Inject
+    private Provider<BackupContext> backupContextProvider; // Lazy inject with Provider<>
 
     // @Inject
     // private Injector injector;
@@ -35,16 +36,21 @@ public class RestoreCommand implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         log.info("Iniciando...");
-        // log.info("Diretório raiz de backup: {}", backupRootDir);
+        log.info("Diretório raiz de backup: {}", backupRootDir);
 
-        // BackupContext backupContext = backupContextProvider.get();
+        // TODO: daquiii: erro ao executar:
+        // ./DwWorkstation.java restore --backup-root-dir=/home/mhagnumdw/Dropbox/backup/teste-dw-backup
+        // Pois realmente não é possível injetar BackupCommand em BackupContextProvider
+        // já que no momento está sendo executado RestoreCommand
+        // Talvez uma boa opção seja ter apenas o BackupCommand com
+        // duas opções: --executar --restaurar
+        // ./DwWorkstation.java backup --executar --backup-root-dir=/xpto/xpto
+        // ./DwWorkstation.java backup --restaurar --backup-root-dir=/xpto/xpto
+        BackupContext backupContext = backupContextProvider.get();
 
-        // if (Files.exists(backupContext.getBackupDir())) {
-        //     log.info("O diretório '{}' já existe", backupContext.getBackupDir());
-        // } else {
-        //     log.info("O diretório '{}' não existe, criando", backupContext.getBackupDir());
-        //     Files.createDirectory(backupContext.getBackupDir());
-        // }
+        if (Files.notExists(backupContext.getBackupDir())) {
+            throw new NoSuchFileException(backupContext.getBackupDir().toString());
+        }
 
         // ServiceLoader<Backup> backupProviders = ServiceLoader.load(Backup.class);
         // for (Backup backup : backupProviders) {
