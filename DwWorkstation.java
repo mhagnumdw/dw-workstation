@@ -30,7 +30,8 @@ import picocli.CommandLine.ScopeType;
     description = "DwWorkstation made with jbang",
     scope = ScopeType.INHERIT, // https://picocli.info/#_inherited_command_attributes
     subcommands = {
-        BackupCommand.class
+        BackupCommand.class,
+        RestoreCommand.class
     }
 )
 class DwWorkstation implements Callable<Integer> {
@@ -42,13 +43,15 @@ class DwWorkstation implements Callable<Integer> {
     private Path userHome = Path.of(System.getProperty("user.home"));
 
     public static void main(String... args) {
-        int exitCode = new CommandLine(DwWorkstation.class, new GuiceFactory()).execute(args);
+        int exitCode = new CommandLine(DwWorkstation.class, new GuiceFactory())
+            .execute(args);
         System.exit(exitCode);
     }
 
     @Override
     public Integer call() throws Exception { // your business logic goes here...
         log.info("Iniciando...");
+        log.info("...Fim");
         return 0;
     }
 
