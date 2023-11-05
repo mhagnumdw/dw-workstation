@@ -7,7 +7,7 @@ import com.google.auto.service.AutoService;
 public class BackupDNFPackages extends BackupAbstract {
 
     @Override
-    public void process() throws BackupException {
+    public void backup() throws BackupException {
         log.info("Iniciando");
 
         backup("dnf list installed", "dnf_list_installed");

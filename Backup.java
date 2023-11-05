@@ -6,6 +6,6 @@
  */
 public interface Backup {
 
-    void process() throws BackupException;
+    void backup() throws BackupException;
 
 }

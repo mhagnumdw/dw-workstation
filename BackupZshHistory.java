@@ -9,7 +9,7 @@ import com.google.auto.service.AutoService;
 public class BackupZshHistory extends BackupAbstract {
 
     @Override
-    public void process() throws BackupException {
+    public void backup() throws BackupException {
         log.info("Iniciando");
 
         String fileName = ".zsh_history";

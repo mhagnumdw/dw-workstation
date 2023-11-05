@@ -50,7 +50,7 @@ public class BackupCommand implements Callable<Integer> {
         for (Backup backup : backupProviders) {
             injector.injectMembers(backup);
             try {
-                backup.process(); // executa a rotina de backup
+                backup.backup(); // executa a rotina de backup
             } catch (BackupException e) {
                 // TODO: e se não vier BackupException, o que fazer?
                 // TODO: decidir melhor o que fazer com o erro:

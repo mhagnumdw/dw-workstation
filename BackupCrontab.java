@@ -10,7 +10,7 @@ import com.google.auto.service.AutoService;
 public class BackupCrontab extends BackupAbstract {
 
     @Override
-    public void process() throws BackupException {
+    public void backup() throws BackupException {
         log.info("Iniciando");
 
         backup("crontab -l", "crontab_with_command");
