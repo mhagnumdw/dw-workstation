@@ -9,7 +9,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 /**
- * Implementação comum das rotinas de backup. Normalmente rotinas de backup
+ * Implementação comum das rotinas de backup/restore. Normalmente rotinas de backup/restore
  * devem herdar dessa classe ao invés de implementar a interface Backup.
  */
 public abstract class BackupAbstract implements Backup {
@@ -23,6 +23,37 @@ public abstract class BackupAbstract implements Backup {
     @Inject
     @Getter(AccessLevel.PROTECTED)
     private BackupContext backupContext;
+
+    @Override
+    public final void backup() throws BackupException {
+        preBackup();
+        doBackup();
+    }
+
+    // TODO: add javadoc
+    protected abstract void doBackup() throws BackupException;
+
+    // TODO: add javadoc
+    protected void preBackup() throws BackupException {
+        if (Files.exists(backupContext.getBackupDir())) {
+            log.info("O diretório '{}' já existe", backupContext.getBackupDir());
+        } else {
+            log.info("O diretório '{}' não existe, criando", backupContext.getBackupDir());
+            try {
+                Files.createDirectory(backupContext.getBackupDir());
+            } catch (IOException e) {
+                throw BackupException.of("Falha ao criar diretório do backup", e);
+            }
+        }
+    }
+
+    @Override
+    public final void restore() throws BackupException {
+        doRestore();
+    }
+
+    // TODO: add javadoc
+    protected abstract void doRestore() throws BackupException;
 
     // TODO: nem precisaria do segundo parâmetro, pode assumir o nome do arquivo do source
     /**

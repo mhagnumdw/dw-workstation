@@ -1,1 +1,1 @@
-- [ ] Talvez o contrato de Backup deva ter tanto o método de backup como restore
+- [ ] Implementar os métodos de restore()

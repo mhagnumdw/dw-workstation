@@ -30,8 +30,7 @@ import picocli.CommandLine.ScopeType;
     description = "DwWorkstation made with jbang",
     scope = ScopeType.INHERIT, // https://picocli.info/#_inherited_command_attributes
     subcommands = {
-        BackupCommand.class,
-        RestoreCommand.class
+        BackupCommand.class
     }
 )
 class DwWorkstation implements Callable<Integer> {
